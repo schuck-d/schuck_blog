@@ -56,7 +56,7 @@ devDependencies:
     specifier: ^29.5.2
     version: 29.5.12
   '@types/node':
-    specifier: ^20.3.1
+    specifier: ^20.14.13
     version: 20.14.13
   '@types/supertest':
     specifier: ^6.0.0
