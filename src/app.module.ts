@@ -2,22 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    // swagger配置
-    SwaggerModule.forRoot({
-      swaggerOptions: {},
-      explorer: true,
-      document: new DocumentBuilder()
-        .setTitle('Your API Title')
-        .setDescription('API description')
-        .setVersion('1.0')
-        .addTag('example')
-        .build(),
-    }),
     // 加载连接数据库
     TypeOrmModule.forRoot({
       type: 'mysql', // 数据库类型
