@@ -11,7 +11,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       type: 'mysql', // 数据库类型
       host: '116.205.136.171', // 数据库ip地址
       port: 3306, // 端口
-      username: 'root', // 登录名
+      username: 'schuck', // 登录名
       password: '!duxin1002', // 密码
       database: 'blog', // 数据库名称
       entities: [__dirname + '/**/*.entity{.ts,.js}'], // 扫描本项目中.entity.ts或者.entity.js的文件
