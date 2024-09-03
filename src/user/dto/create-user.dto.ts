@@ -1,3 +1,13 @@
 export class CreateUserDto {
-  username;
+  username: string;
+
+  nickname: string;
+
+  password: string;
+
+  avatar: string;
+
+  email: string;
+
+  role: string;
 }

@@ -7,6 +7,7 @@ import bcrypt from 'bcryptjs';
  *    - slat  用于哈希密码的盐。如果指定为数字，则将使用指定的轮数生成盐并将其使用。推荐 10
  */
 export const hashPassword = async (password: string): Promise<string> => {
+  console.log('【bcrypt-----log】', bcrypt);
   return bcrypt.hashSync(password, 10);
 };
 

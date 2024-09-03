@@ -1,5 +1,5 @@
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { hashPassword } from '@/utils/bcrypt'
+import { hashPassword } from '@/utils/bcrypt';
 
 @Entity('user')
 export class User {
@@ -10,19 +10,19 @@ export class User {
   username: string; // 用户名
 
   @Column({ length: 100 })
-  nickname: string;  //昵称
+  nickname: string; //昵称
 
   @Column()
-  password: string;  // 密码
+  password: string; // 密码
 
   @Column()
-  avatar: string;   //头像
+  avatar: string; //头像
 
   @Column()
   email: string;
 
   @Column('simple-enum', { enum: ['root', 'author', 'visitor'] })
-  role: string;   // 用户角色
+  role: string; // 用户角色
 
   @Column({
     name: 'create_time',
@@ -37,9 +37,9 @@ export class User {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateTime: Date;
-
-  @BeforeInsert()
-  async encryptPwd() {
-    this.password = await hashPassword(this.password);
-  }
+  //
+  // @BeforeInsert()
+  // async encryptPwd() {
+  //   this.password = await hashPassword(this.password);
+  // }
 }
