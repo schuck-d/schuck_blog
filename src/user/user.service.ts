@@ -23,4 +23,21 @@ export class UserService {
     const newUser = await this.userRepository.create(createUser);
     return await this.userRepository.save(newUser);
   }
+
+  async login(loginUser: CreateUserDto) {
+    const { username, password } = loginUser;
+
+    const user = await this.userRepository.findOne({
+      where: { username },
+    });
+
+    // 查询到当前用户
+    if (user) {
+      if (user.username === username && user.password === password) {
+        return user;
+      }
+    } else {
+      throw new HttpException('当前用户未注册', HttpStatus.BAD_REQUEST);
+    }
+  }
 }

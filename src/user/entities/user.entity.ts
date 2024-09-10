@@ -1,5 +1,10 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { hashPassword } from '@/utils/bcrypt';
+import {
+  // BeforeInsert,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+// import { hashPassword } from '@/utils/bcrypt';
 
 @Entity('user')
 export class User {

@@ -15,4 +15,11 @@ export class UserController {
   register(@Body() createUser: CreateUserDto) {
     return this.userService.register(createUser);
   }
+
+  @ApiOperation({ summary: '用户登录' })
+  @ApiResponse({ status: 200, type: [User] })
+  @Post('login')
+  login(@Body() createUser: CreateUserDto) {
+    return this.userService.login(createUser);
+  }
 }
