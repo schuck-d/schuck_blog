@@ -1,11 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Article } from '@/article/entities/article.entity';
 
 @Injectable()
 export class ArticleService {
-  create(createArticleDto: CreateArticleDto) {
-    return 'This action adds a new article';
+  constructor(
+    @InjectRepository(Article)
+    private articleRepository: Repository<Article>,
+  ) {}
+
+  async create(createArticleDto: CreateArticleDto) {
+    const newArticle = await this.articleRepository.create(createArticleDto);
+
+    return await this.articleRepository.save(newArticle);
   }
 
   findAll() {
