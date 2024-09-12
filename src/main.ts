@@ -15,6 +15,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document); // '/api' 是 Swagger UI 的路径
 
-  await app.listen(2276);
+  await app.listen(8080);
 }
 bootstrap();
