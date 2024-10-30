@@ -10,6 +10,8 @@ export class UserService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
+
+  // 注册
   async register(createUser: CreateUserDto) {
     const { username } = createUser;
 
@@ -24,6 +26,7 @@ export class UserService {
     return await this.userRepository.save(newUser);
   }
 
+  // 登录
   async login(loginUser: CreateUserDto) {
     const { username, password } = loginUser;
 
@@ -38,6 +41,19 @@ export class UserService {
       }
     } else {
       throw new HttpException('当前用户未注册', HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  // 通过username查找当前用户
+  async findOne(username: string): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: { username },
+    });
+
+    if (user) {
+      return user;
+    } else {
+      return null;
     }
   }
 }
