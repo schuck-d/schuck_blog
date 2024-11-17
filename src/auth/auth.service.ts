@@ -5,18 +5,23 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 import { JwtService } from '@nestjs/jwt';
 import { isOk } from '@/utils/bcrypt';
 import { User } from '@/user/entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly userService: UserService,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
     private readonly jwtService: JwtService,
   ) {}
 
   // jwt验证 - step 2: 校验用户信息
   async validateUser(username: string, password: string) {
     console.log('jwt验证 - step 2: 校验用户信息');
-    const user = await this.userService.findOne(username);
+    const user = await this.userRepository.findOne({
+      where: { username },
+    });
 
     if (user) {
       const hashedPassword = user.password;
